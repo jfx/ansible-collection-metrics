@@ -21,7 +21,7 @@ tags:
   - monitoring
   - ubuntu
 
-dependencies: {jfx.common.install_opt}
+dependencies: {}
 
 repository: https://gitlab.com/op_so/ansible/metrics
 
