@@ -1,0 +1,99 @@
+---
+- name: Restart Prometheus if link current has changed
+  ansible.builtin.debug:
+    msg: "Current symlink has changed."
+  when: io_changed.prometheus
+  notify:
+    - Restart prometheus
+
+- name: Copy promtool
+  ansible.builtin.copy:
+    src: "{{ io_temp_dir_path.prometheus }}/prometheus-{{ prom_version }}.linux-{{ prom_arch }}/promtool"
+    dest: /opt/prometheus/v{{ prom_version }}
+    mode: a+x
+    remote_src: true
+  when: io_temp_dir_path.prometheus is defined
+  notify:
+    - Restart prometheus
+
+- name: Create symlink in /usr/local/bin
+  ansible.builtin.file:
+    dest: /usr/local/bin/promtool
+    src: /opt/prometheus/current/promtool
+    state: link
+
+- name: Create user product
+  ansible.builtin.user:
+    name: prometheus
+    password: '*'
+    shell: /bin/false
+    createhome: false
+
+- name: Create prometheus directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: prometheus
+    group: prometheus
+    mode: '0755'
+  with_items:
+    - /etc/prometheus
+    - /var/lib/prometheus
+
+- name: Copy configuration files
+  ansible.builtin.copy:
+    src: "{{ io_temp_dir_path.prometheus }}/prometheus-{{ prom_version }}.linux-{{ prom_arch }}/{{ item }}"
+    dest: /etc/prometheus/
+    owner: prometheus
+    group: prometheus
+    mode: '0640'
+    remote_src: true
+  with_items:
+    - consoles
+    - console_libraries
+  when: io_temp_dir_path.prometheus is defined
+  notify:
+    - Restart prometheus
+
+- name: Remove the temporary download directory
+  ansible.builtin.file:
+    path: "{{ temp_dir.path }}"
+    state: absent
+  when: io_temp_dir_path.prometheus is defined
+
+- name: Copy Prometheus config file
+  ansible.builtin.template:
+    src: "{{ lookup('ansible.builtin.first_found', config_file) }}"
+    dest: /etc/prometheus/prometheus.yml
+    backup: true
+    owner: prometheus
+    group: prometheus
+    mode: '0640'
+  vars:
+    config_file:
+      - "{{ playbook_dir }}/templates/prometheus.yml.j2"
+      - ../templates/prometheus.yml.j2
+  notify:
+    - Restart prometheus
+
+- name: Add product.service
+  ansible.builtin.copy:
+    src: "{{ lookup('ansible.builtin.first_found', service_file) }}"
+    dest: /etc/systemd/system/prometheus.service
+    mode: '0644'
+  vars:
+    service_file:
+      - "{{ playbook_dir }}/files/prometheus.service"
+      - prometheus.service
+  notify:
+    - Restart prometheus
+    - Reload systemd daemon
+
+- name: Enable Prometheus service
+  ansible.builtin.systemd:
+    name: prometheus
+    state: started
+    enabled: true
+
+- name: Flush_handlers
+  ansible.builtin.meta: flush_handlers

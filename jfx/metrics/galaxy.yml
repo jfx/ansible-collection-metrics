@@ -1,0 +1,34 @@
+---
+namespace: jfx
+
+name: metrics
+
+version: 1.0.0
+
+readme: README.md
+
+authors:
+  - FX Soubirou <soubirou@yahoo.fr>
+
+description: a collection that deploy metrics tools on Ubuntu and Debian.
+
+license:
+  - MIT
+
+tags:
+  - debian
+  - metrics
+  - monitoring
+  - ubuntu
+
+dependencies: {jfx.common.install_opt}
+
+repository: https://gitlab.com/op_so/ansible/metrics
+
+documentation: https://gitlab.com/op_so/ansible/metrics/-/blob/main/README.md
+
+homepage: https://gitlab.com/op_so/ansible/metrics
+
+issues: https://gitlab.com/op_so/ansible/metrics/-/issues
+
+build_ignore: []

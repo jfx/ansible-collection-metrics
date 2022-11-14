@@ -1,0 +1,7 @@
+---
+- name: Test playbook
+  hosts: localhost
+  remote_user: root
+
+  roles:
+    - role: 'jfx/metrics/roles/prometheus'

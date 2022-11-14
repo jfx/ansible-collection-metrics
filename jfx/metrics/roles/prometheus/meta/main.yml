@@ -1,0 +1,31 @@
+---
+galaxy_info:
+  role_name: prometheus
+  namespace: jfx
+  author: FX Soubirou
+  description: Ansible role that install/update Prometheus on Ubuntu and Debian Operating Systems.
+
+  license: MIT
+
+  min_ansible_version: "2.10"
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - bionic
+        - focal
+        - jammy
+    - name: Debian
+      versions:
+        - buster
+        - bullseye
+
+  galaxy_tags:
+    - debian
+    - metrics
+    - monitoring
+    - prometheus
+    - ubuntu
+
+
+dependencies: []
