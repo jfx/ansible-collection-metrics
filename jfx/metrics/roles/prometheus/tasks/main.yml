@@ -57,7 +57,7 @@
 
 - name: Remove the temporary download directory
   ansible.builtin.file:
-    path: "{{ temp_dir.path }}"
+    path: "{{ io_temp_dir_path.prometheus }}"
     state: absent
   when: io_temp_dir_path.prometheus is defined
 

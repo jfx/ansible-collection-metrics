@@ -1,0 +1,65 @@
+---
+- name: Restart Blackbox exporter if link current has changed
+  ansible.builtin.debug:
+    msg: "Current symlink has changed."
+  when: io_changed.blackbox_exporter
+  notify:
+    - Restart blackbox exporter
+
+- name: Create user product
+  ansible.builtin.user:
+    name: blackbox_exporter
+    password: '*'
+    shell: /bin/false
+    createhome: false
+
+- name: Create blackbox exporter directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: blackbox_exporter
+    group: blackbox_exporter
+    mode: '0755'
+  with_items:
+    - /etc/blackbox_exporter
+    - /var/lib/blackbox_exporter
+
+- name: Copy configuration files
+  ansible.builtin.copy:
+    src: "{{ io_temp_dir_path.blackbox_exporter }}/blackbox_exporter-{{ bbe_version }}.linux-{{ bbe_arch }}/blackbox.yml"
+    dest: /etc/blackbox_exporter/
+    owner: blackbox_exporter
+    group: blackbox_exporter
+    mode: '0640'
+    remote_src: true
+  when: io_temp_dir_path.blackbox_exporter is defined
+  notify:
+    - Restart blackbox exporter
+
+- name: Remove the temporary download directory
+  ansible.builtin.file:
+    path: "{{ io_temp_dir_path.blackbox_exporter }}"
+    state: absent
+  when: io_temp_dir_path.blackbox_exporter is defined
+
+- name: Add product.service
+  ansible.builtin.copy:
+    src: "{{ lookup('ansible.builtin.first_found', service_file) }}"
+    dest: /etc/systemd/system/blackbox_exporter.service
+    mode: '0644'
+  vars:
+    service_file:
+      - "{{ playbook_dir }}/files/blackbox_exporter.service"
+      - blackbox_exporter.service
+  notify:
+    - Restart blackbox exporter
+    - Reload systemd daemon
+
+- name: Enable blackbox exporter service
+  ansible.builtin.systemd:
+    name: blackbox_exporter
+    state: started
+    enabled: true
+
+- name: Flush_handlers
+  ansible.builtin.meta: flush_handlers
