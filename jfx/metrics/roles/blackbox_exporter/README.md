@@ -1,4 +1,4 @@
-# Ansible reboot role
+# Ansible blackbox exporter role
 
 A role that install/update Blackbox exporter on Ubuntu and Debian.
 
@@ -63,6 +63,9 @@ example:
 
 * `blackbox_exporter.service`:
 A default `blackbox_exporter.service` systemd file is defined but could be overridden by a file located in `{{ playbook_dir }}/files/` directory.
+
+* `blackbox.yml`:
+The default `blackbox.yml` file is deployed but could be overridden by a file located in `{{ playbook_dir }}/files/` directory.
 
 ## Authors
 

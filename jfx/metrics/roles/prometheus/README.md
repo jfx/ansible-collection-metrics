@@ -1,4 +1,4 @@
-# Ansible reboot role
+# Ansible prometheus role
 
 A role that install/update [Prometheus](https://prometheus.io/) on Ubuntu and Debian.
 

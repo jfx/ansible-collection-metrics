@@ -1,9 +1,9 @@
 ---
 galaxy_info:
-  role_name: blackbox_exporter
+  role_name: grafana
   namespace: jfx
   author: FX Soubirou
-  description: Ansible role that install/update Blackbox exporter on Ubuntu and Debian Operating Systems.
+  description: Ansible role that install/update Grafana on Ubuntu and Debian Operating Systems.
 
   license: MIT
 

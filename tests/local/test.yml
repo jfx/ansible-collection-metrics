@@ -5,3 +5,5 @@
 
   roles:
     - role: 'jfx/metrics/roles/prometheus'
+    - role: 'jfx/metrics/roles/blackbox_exporter'
+    - role: 'jfx/metrics/roles/grafana'

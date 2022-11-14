@@ -24,7 +24,19 @@
     - /etc/blackbox_exporter
     - /var/lib/blackbox_exporter
 
-- name: Copy configuration files
+- name: Copy specific config file
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/files/blackbox.yml"
+    dest: /etc/blackbox_exporter/
+    owner: blackbox_exporter
+    group: blackbox_exporter
+    mode: '0640'
+  notify:
+    - Restart blackbox exporter
+  ignore_errors: true  # noqa package-latest
+  register: specific_config_file
+
+- name: Copy standart configuration file
   ansible.builtin.copy:
     src: "{{ io_temp_dir_path.blackbox_exporter }}/blackbox_exporter-{{ bbe_version }}.linux-{{ bbe_arch }}/blackbox.yml"
     dest: /etc/blackbox_exporter/
@@ -32,7 +44,7 @@
     group: blackbox_exporter
     mode: '0640'
     remote_src: true
-  when: io_temp_dir_path.blackbox_exporter is defined
+  when: (io_temp_dir_path.blackbox_exporter is defined) and (specific_config_file.failed)
   notify:
     - Restart blackbox exporter
 

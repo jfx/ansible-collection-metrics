@@ -61,6 +61,23 @@ A role that install/update [Prometheus](https://prometheus.io/) on Ubuntu and De
 - `blackbox_exporter.service`:
 A default `blackbox_exporter.service` systemd file is defined but could be overridden by a file located in `{{ playbook_dir }}/files/` directory.
 
+## Grafana role
+
+A role that install/update [Grafana](https://grafana.com/oss/grafana/) on Ubuntu and Debian Operating Systems.
+
+### Grafana role dependencies
+
+-
+
+### Grafana role variables
+
+-
+
+### Grafana files
+
+- `grafana.ini`:
+A default `grafana.ini` configuration file is defined but could be overridden by a `grafana.ini.j2` file located in `{{ playbook_dir }}/templates/` directory.
+
 ## Getting Started
 
 ### Requirements
@@ -114,6 +131,7 @@ example:
       vars:
         bbe_version: "{{ blackbox_exporter_version }}"
         bbe_arch: "{{ arch }}"
+    - role: grafana
 ```
 
 ## Authors
