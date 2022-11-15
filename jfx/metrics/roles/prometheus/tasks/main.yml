@@ -65,7 +65,6 @@
   ansible.builtin.template:
     src: "{{ lookup('ansible.builtin.first_found', config_file) }}"
     dest: /etc/prometheus/prometheus.yml
-    backup: true
     owner: prometheus
     group: prometheus
     mode: '0640'

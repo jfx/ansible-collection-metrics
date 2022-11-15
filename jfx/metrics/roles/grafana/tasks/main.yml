@@ -25,7 +25,7 @@
 - name: Copy specific config file if exists
   ansible.builtin.template:
     src: "{{ playbook_dir }}/templates/grafana.ini.j2"
-    dest: /etc/grafana/
+    dest: /etc/grafana/grafana.ini
     owner: root
     group: grafana
     mode: '0640'
