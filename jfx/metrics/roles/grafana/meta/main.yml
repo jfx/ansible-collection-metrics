@@ -3,7 +3,7 @@ galaxy_info:
   role_name: grafana
   namespace: jfx
   author: FX Soubirou
-  description: Ansible role that install/update Grafana on Ubuntu and Debian Operating Systems.
+  description: Ansible role that installs/updates Grafana on Ubuntu and Debian Operating Systems.
 
   license: MIT
 

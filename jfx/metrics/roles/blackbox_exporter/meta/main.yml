@@ -3,7 +3,7 @@ galaxy_info:
   role_name: blackbox_exporter
   namespace: jfx
   author: FX Soubirou
-  description: Ansible role that install/update Blackbox exporter on Ubuntu and Debian Operating Systems.
+  description: Ansible role that installs/updates Blackbox exporter on Ubuntu and Debian Operating Systems.
 
   license: MIT
 

@@ -14,34 +14,9 @@ An [Ansible](https://www.ansible.com/) collection that deploys metrics tools on 
 
 This collections includes:
 
-## Prometheus role
-
-A role that install/update [Prometheus](https://prometheus.io/) on Ubuntu and Debian Operating Systems.
-
-### Prometheus role dependencies
-
-- `jfx.common.install_opt` role for pre-installation of Prometheus.
-
-### Prometheus role variables
-
-- `prom_version`
-  - Required - example: `2.40.1`
-  - Description: Version of Prometheus.
-- `prom_arch`
-  - Default: `amd64`
-  - Description: Binary architecture of Prometheus amd64|arm64 ...
-
-### Prometheus files
-
-- `prometheus.service`:
-A default `prometheus.service` systemd file is defined but could be overridden by a file located in `{{ playbook_dir }}/files/` directory.
-
-- `prometheus.yml`:
-A default `prometheus.yml.j2` config file is defined but could be overridden by a file located in `{{ playbook_dir }}/templates/` directory.
-
 ## Blackbox exporter role
 
-A role that install/update [Prometheus](https://prometheus.io/) on Ubuntu and Debian Operating Systems.
+A role that installs/updates [Prometheus](https://prometheus.io/) on Ubuntu and Debian Operating Systems.
 
 ### Blackbox exporter role dependencies
 
@@ -63,7 +38,7 @@ A default `blackbox_exporter.service` systemd file is defined but could be overr
 
 ## Grafana role
 
-A role that install/update [Grafana](https://grafana.com/oss/grafana/) on Ubuntu and Debian Operating Systems.
+A role that installs/updates [Grafana](https://grafana.com/oss/grafana/) on Ubuntu and Debian Operating Systems.
 
 ### Grafana role dependencies
 
@@ -77,6 +52,31 @@ A role that install/update [Grafana](https://grafana.com/oss/grafana/) on Ubuntu
 
 - `grafana.ini`:
 A default `grafana.ini` configuration file is defined but could be overridden by a `grafana.ini.j2` file located in `{{ playbook_dir }}/templates/` directory.
+
+## Prometheus role
+
+A role that installs/updates [Prometheus](https://prometheus.io/) on Ubuntu and Debian Operating Systems.
+
+### Prometheus role dependencies
+
+- `jfx.common.install_opt` role for pre-installation of Prometheus.
+
+### Prometheus role variables
+
+- `prom_version`
+  - Required - example: `2.40.1`
+  - Description: Version of Prometheus.
+- `prom_arch`
+  - Default: `amd64`
+  - Description: Binary architecture of Prometheus amd64|arm64 ...
+
+### Prometheus files
+
+- `prometheus.service`:
+A default `prometheus.service` systemd file is defined but could be overridden by a file located in `{{ playbook_dir }}/files/` directory.
+
+- `prometheus.yml`:
+A default `prometheus.yml.j2` config file is defined but could be overridden by a file located in `{{ playbook_dir }}/templates/` directory.
 
 ## Getting Started
 

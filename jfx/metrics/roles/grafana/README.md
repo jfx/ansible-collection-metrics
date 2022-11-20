@@ -1,6 +1,6 @@
 # Ansible Grafana role
 
-A role that install/update Grafana on Ubuntu and Debian.
+A role that installs/updates Grafana on Ubuntu and Debian.
 
 [![Ansible Galaxy](https://shields.io/badge/Ansible_Galaxy-informational?logo=ansible&style=flat-square)](https://galaxy.ansible.com/jfx/system) Ansible Galaxy collection.
 
@@ -24,7 +24,7 @@ In order to use:
 ansible-galaxy collection install jfx.metrics
 ```
 
-* Then use the roles from the collection in the playbook:
+* Then use the role from the collection in the playbook:
 
 example:
 

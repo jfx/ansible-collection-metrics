@@ -31,7 +31,7 @@
     mode: '0640'
   notify:
     - Restart grafana
-  ignore_errors: true  # noqa package-latest
+  ignore_errors: true  # noqa ignore-errors
 
 - name: Enable grafana service
   ansible.builtin.systemd:

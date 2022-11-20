@@ -93,6 +93,3 @@
     name: prometheus
     state: started
     enabled: true
-
-- name: Flush_handlers
-  ansible.builtin.meta: flush_handlers
