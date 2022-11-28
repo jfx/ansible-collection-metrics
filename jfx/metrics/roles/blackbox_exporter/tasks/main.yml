@@ -33,7 +33,7 @@
     mode: '0640'
   notify:
     - Restart blackbox exporter
-  ignore_errors: true  # noqa package-latest
+  ignore_errors: true  # noqa ignore-errors
   register: specific_config_file
 
 - name: Copy standart configuration file

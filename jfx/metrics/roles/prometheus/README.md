@@ -52,12 +52,10 @@ example:
 
 ### prometheus role variables
 
-* `prom_version`
-  * Required - example: `2.40.1`
-  * Description: Version of prometheus.
-* `prom_arch`
-  * Default: `amd64`
-  * Description: Binary architecture of Prometheus amd64|arm64 ...
+| Variables      | Description                                             | Default      |
+| -------------- | ------------------------------------------------------- | ------------ |
+| `prom_version` | Version of Prometheus. Example: `2.40.1`                | **Required** |
+| `prom_arch`    | Binary architecture of Prometheus: `amd64`, `arm64` ... | `amd64`      |
 
 ### prometheus files
 

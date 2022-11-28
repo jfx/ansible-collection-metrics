@@ -1,4 +1,4 @@
-# Ansible blackbox exporter role
+# Ansible blackbox_exporter role
 
 A role that installs/updates Blackbox exporter on Ubuntu and Debian.
 
@@ -50,16 +50,14 @@ example:
         bbe_arch: "{{ arch }}"
 ```
 
-### Blackbox exporter role variables
+### blackbox_exporter role variables
 
-* `bbe_version`
-  * Required - example: `0.22.0`
-  * Description: Version of Blackbox exporter.
-* `bbe_arch`
-  * Default: `amd64`
-  * Description: Binary architecture of Prometheus amd64|arm64 ...
+| Variables     | Description                                                    | Default      |
+| ------------- | -------------------------------------------------------------- | ------------ |
+| `bbe_version` | Version of Blackbox exporter. Example: `0.22.0`                | **Required** |
+| `bbe_arch`    | Binary architecture of Blackbox exporter: `amd64`, `arm64` ... | `amd64`      |
 
-### Blackbox exporter files
+### blackbox_exporter files
 
 * `blackbox_exporter.service`:
 A default `blackbox_exporter.service` systemd file is defined but could be overridden by a file located in `{{ playbook_dir }}/files/` directory.

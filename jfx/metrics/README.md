@@ -14,24 +14,28 @@ An [Ansible](https://www.ansible.com/) collection that deploys metrics tools on 
 
 This collections includes:
 
-## Blackbox exporter role
+| Roles                                        | Description                                                                            |
+| -------------------------------------------- | -------------------------------------------------------------------------------------- |
+| [blackbox_exporter](#blackbox_exporter-role) | A role that installs/updates Blackbox exporter on Ubuntu and Debian Operating Systems. |
+| [grafana](#grafana-role)                     | A role that installs/updates Grafana on Ubuntu and Debian Operating Systems.           |
+| [prometheus](#prometheus-role)               | A role that installs/updates Prometheus on Ubuntu and Debian Operating Systems.        |
 
-A role that installs/updates [Prometheus](https://prometheus.io/) on Ubuntu and Debian Operating Systems.
+## blackbox_exporter role
 
-### Blackbox exporter role dependencies
+A role that installs/updates [Blackbox exporter](https://github.com/prometheus/blackbox_exporter) on Ubuntu and Debian Operating Systems.
+
+### blackbox_exporter role dependencies
 
 - `jfx.common.install_opt` role for pre-installation of Prometheus.
 
-### Blackbox exporter role variables
+### blackbox_exporter role variables
 
-- `bbe_version`
-  - Required - example: `0.22.0`
-  - Description: Version of Blackbox exporter.
-- `bbe_arch`
-  - Default: `amd64`
-  - Description: Binary architecture of Prometheus amd64|arm64 ...
+| Variables     | Description                                                    | Default      |
+| ------------- | -------------------------------------------------------------- | ------------ |
+| `bbe_version` | Version of Blackbox exporter. Example: `0.22.0`                | **Required** |
+| `bbe_arch`    | Binary architecture of Blackbox exporter: `amd64`, `arm64` ... | `amd64`      |
 
-### Blackbox exporter files
+### blackbox_exporter files
 
 - `blackbox_exporter.service`:
 A default `blackbox_exporter.service` systemd file is defined but could be overridden by a file located in `{{ playbook_dir }}/files/` directory.
@@ -63,12 +67,10 @@ A role that installs/updates [Prometheus](https://prometheus.io/) on Ubuntu and 
 
 ### Prometheus role variables
 
-- `prom_version`
-  - Required - example: `2.40.1`
-  - Description: Version of Prometheus.
-- `prom_arch`
-  - Default: `amd64`
-  - Description: Binary architecture of Prometheus amd64|arm64 ...
+| Variables      | Description                                             | Default      |
+| -------------- | ------------------------------------------------------- | ------------ |
+| `prom_version` | Version of Prometheus. Example: `2.40.1`                | **Required** |
+| `prom_arch`    | Binary architecture of Prometheus: `amd64`, `arm64` ... | `amd64`      |
 
 ### Prometheus files
 

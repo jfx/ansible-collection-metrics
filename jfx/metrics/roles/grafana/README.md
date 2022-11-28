@@ -38,19 +38,19 @@ example:
     - role: grafana
 ```
 
-## Grafana role
+## grafana role
 
 A role that install/update [Grafana](https://grafana.com/oss/grafana/) on Ubuntu and Debian Operating Systems.
 
-### Grafana role dependencies
+### grafana role dependencies
 
 *
 
-### Grafana role variables
+### grafana role variables
 
 *
 
-### Grafana files
+### grafana files
 
 * `grafana.ini`:
 A default `grafana.ini` configuration file is defined but could be overridden by a `grafana.ini.j2` file located in `{{ playbook_dir }}/templates/` directory.
