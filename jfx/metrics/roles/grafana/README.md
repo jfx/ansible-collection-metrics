@@ -48,7 +48,9 @@ A role that install/update [Grafana](https://grafana.com/oss/grafana/) on Ubuntu
 
 ### grafana role variables
 
-*
+| Variables              | Description                  | Default             |
+| ---------------------- | ---------------------------- | ------------------- |
+| `grafana_keyrings_dir` | Apt keyrings directory path. | `/etc/apt/keyrings` |
 
 ### grafana files
 

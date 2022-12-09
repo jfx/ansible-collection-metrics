@@ -6,15 +6,31 @@
       - software-properties-common
     state: latest  # noqa package-latest
 
+- name: Create keyrings directory
+  ansible.builtin.file:
+    path: "{{ grafana_keyrings_dir }}/"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
 - name: Grafana gpg key
   ansible.builtin.apt_key:
     url: https://packages.grafana.com/gpg.key
     id: "{{ grafana_key_id }}"
+    keyring: "{{ grafana_keyrings_dir }}/grafana.gpg"
     state: present
+
+- name: Set permissions of key
+  ansible.builtin.file:
+    path: "{{ grafana_keyrings_dir }}/grafana.gpg"
+    owner: root
+    group: root
+    mode: '0644'
 
 - name: Add grafana repository
   ansible.builtin.apt_repository:
-    repo: deb https://packages.grafana.com/oss/deb stable main
+    repo: deb [signed-by={{ grafana_keyrings_dir }}/grafana.gpg] https://packages.grafana.com/oss/deb stable main
 
 - name: Install grafana
   ansible.builtin.apt:

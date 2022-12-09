@@ -50,7 +50,9 @@ A role that installs/updates [Grafana](https://grafana.com/oss/grafana/) on Ubun
 
 ### Grafana role variables
 
--
+| Variables              | Description                  | Default             |
+| ---------------------- | ---------------------------- | ------------------- |
+| `grafana_keyrings_dir` | Apt keyrings directory path. | `/etc/apt/keyrings` |
 
 ### Grafana files
 
